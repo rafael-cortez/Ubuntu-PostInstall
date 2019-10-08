@@ -9,7 +9,7 @@ NC='\033[0m'
 
 declare -A EXTERNAL_APPS=([google - chrome]="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb")
 
-REPOS_APPS=("flameshot" "virtualbox" "transmission" "steam" "exfat-fuse" "git")
+REPOS_APPS=("flameshot" "virtualbox" "transmission" "steam" "exfat-fuse" "git" "docker.io")
 
 SNAP_APPS=("spotify" "code --classic" "pycharm-community --classic" "intellij-idea-community --classic"
 	"slack --classic" "skype --classic" "wps-office-multilang" "obs-studio" "audacity")
