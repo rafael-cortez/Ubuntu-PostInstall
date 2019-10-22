@@ -11,7 +11,7 @@ declare -A EXTERNAL_APPS=([google-chrome]="https://dl.google.com/linux/direct/go
 
 REPOS_APPS=("flameshot" "virtualbox" "transmission" "steam" "exfat-fuse" "git" "docker.io"\
 			 "redshift" "gnome-tweaks" "nodejs" "npm" "network-manager-openconnect" "openconnect"\ 
-			 "network-manager-openconnect-gnome")
+			 "network-manager-openconnect-gnome" "vim")
 
 SNAP_APPS=("spotify" "code --classic" "pycharm-community --classic" "intellij-idea-community --classic"
 	"slack --classic" "skype --classic" "wps-office-multilang" "obs-studio" "audacity" "tuxguitar-vs" \
