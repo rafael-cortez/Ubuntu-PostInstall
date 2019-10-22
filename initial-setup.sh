@@ -7,12 +7,15 @@ NC='\033[0m'
 
 ## Declaring arrays ##
 
-declare -A EXTERNAL_APPS=([google - chrome]="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb")
+declare -A EXTERNAL_APPS=([google-chrome]="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb")
 
-REPOS_APPS=("flameshot" "virtualbox" "transmission" "steam" "exfat-fuse" "git" "docker.io")
+REPOS_APPS=("flameshot" "virtualbox" "transmission" "steam" "exfat-fuse" "git" "docker.io"\
+			 "redshift" "gnome-tweaks" "nodejs" "npm" "network-manager-openconnect" "openconnect"\ 
+			 "network-manager-openconnect-gnome")
 
 SNAP_APPS=("spotify" "code --classic" "pycharm-community --classic" "intellij-idea-community --classic"
-	"slack --classic" "skype --classic" "wps-office-multilang" "obs-studio" "audacity")
+	"slack --classic" "skype --classic" "wps-office-multilang" "obs-studio" "audacity" "tuxguitar-vs" \
+	"teams-for-linux")
 
 ### Verify User ###
 if [[ $(id -u) -ne 0 ]]; then
@@ -20,6 +23,15 @@ if [[ $(id -u) -ne 0 ]]; then
 	exit -1
 fi
 
+function update_node(){
+	sudo npm cache clean -f  &>/dev/null
+	sudo npm install -g n  &>/dev/null
+	sudo n stable  &>/dev/null
+	sudo n latest  &>/dev/null
+
+	echo -e "Current NodeJs Version -> `node -v`"
+	echo -e "Current NPM Version -> `npm -v`"
+}
 # Check if command worked
 function chk() {
 	if [ $? -eq 0 ]; then
@@ -80,6 +92,8 @@ function clean_system() {
 	update
 }
 
+banner "Inializing initial configuration"
+
 banner "Updating system"
 clean_system
 
@@ -127,6 +141,9 @@ for ((i = 0; i < ${#SNAP_APPS[@]}; i++)); do
 		echo -e "\b\b\b\b\b${RED}FAIL${NC}"
 	fi
 done
+
+banner "Updating NodeJS"
+update_node
 
 banner "Final Update"
 clean_system
